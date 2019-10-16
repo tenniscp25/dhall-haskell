@@ -55,7 +55,7 @@ formatTest characterSet prefix =
 
         let doc        =   Doc.pretty header
                        <>  Pretty.prettyCharacterSet characterSet expr
-        let docStream  = Doc.layoutSmart Pretty.layoutOpts doc
+        let docStream  = Doc.removeTrailingWhitespace (Doc.layoutSmart Pretty.layoutOpts doc)
         let actualText = Doc.Render.Text.renderStrict docStream
 
         expectedText <- Text.IO.readFile outputFile
